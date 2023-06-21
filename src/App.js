@@ -1,13 +1,15 @@
 import logo from './logo.svg';
 import './App.css';
 import { createContext, useEffect, useState, useContext, useRef, useMemo, useCallback } from 'react';
-
+//usecontext
 const globalcontex = createContext()
 function App() {
   //var color = 'red'
+  //usestate
   const [color, setcolor] = useState('red')
   const [count, setcount] = useState(0)
   const clickhandle = () => setcolor(color == "green" ? "red" : "green");
+  //useEffect
   useEffect(() => {
     setTimeout(() => {
       setcount((count) => count + 1);
@@ -23,24 +25,30 @@ function App() {
   );
 }
 function Home() {
-  var [txt, settxt] = useState("hari")
-  const color = useContext(globalcontex);
-  const previousvalue = useRef("")
+  //usestate
   const [count1, setcount1] = useState(0)
   const [input, setinput] = useState("")
+  var [txt, settxt] = useState("hari")
+  //usecontext
+  const color = useContext(globalcontex);
+  //useRef
+  const previousvalue = useRef("")
+  //function for usecallback and usecallback
+  const txt1 = useCallback(() => { callback() }, [])
   function callback() {
     settxt(txt + "i")
     console.log(txt)
     return txt
   }
-  function tst() {
+  //function for usememo and usememo
 
+  const letter = useMemo(tst, [txt])
+  function tst() {
     setcount1(count1 + 1)
     return txt[2]
   }
+  //useeffect for useRef
   useEffect(() => { previousvalue.current = input }, [input])
-  const txt1 = useCallback(() => { callback() }, [])
-  const letter = useMemo(tst, [txt])
   return (
     <div>
       <p>the color is {color}</p>
